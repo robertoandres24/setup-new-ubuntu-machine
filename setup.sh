@@ -2,7 +2,7 @@
 
 sudo apt update && sudo apt upgrade
 # General packages
-sudo apt install curl wget git stow tree dconf-editor unzip
+sudo apt install curl wget git stow tree dconf-editor unzip software-properties-common apt-transport-https
 # Node with Nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 nvm install --lts
@@ -10,7 +10,6 @@ nvm install --lts
 # https://docs.docker.com/engine/install/ubuntu/
 sudo apt-get remove docker docker-engine docker.io containerd runc
 sudo apt-get install \
-    apt-transport-https \
     ca-certificates \
     curl \
     gnupg \
@@ -25,14 +24,17 @@ sudo docker run hello-world
 sudo usermod -aG docker ${USER}
 su - ${USER}
 # Php
-sudo apt install software-properties-common
+sudo apt install 
 sudo add-apt-repository ppa:ondrej/php
 sudo apt install php7.1 php7.1-fpm php7.1-cli php7.1-zip php7.1-xml php7.1-soap php7.1-amqp php7.1-curl php7.1-mbstring php7.1-mysql
 # Composer
 wget -O composer-setup.php https://getcomposer.org/installer
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
 ### get main apps
+# Vscode
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt install code
 # Tilix (terminal emulator)
 sudo add-apt-repository ppa:ubuntuhandbook1/tilix
 sudo apt install tilix
@@ -44,8 +46,6 @@ sudo apt update
 sudo apt install google-chrome-stable
 sudo rm /etc/apt/sources.list.d/google-chrome.list
 ### Snaps
-# Vscode
-sudo snap install --classic code
 # Spotify
 sudo snap install spotify
 # Simplenote
